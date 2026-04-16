@@ -1,8 +1,8 @@
-numpy==1.24.4
-pandas
-matplotlib
-scikit-learn==1.2.2
 streamlit
+pandas
+numpy
+scikit-learn
+imbalanced-learn
 joblib
+matplotlib
 reportlab
-imbalanced-learn==0.10.1
