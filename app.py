@@ -8,6 +8,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, HRFl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 import os
+import traceback
 
 st.set_page_config(page_title="Disease Risk Prediction System", layout="wide")
 
@@ -54,11 +55,25 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.write("Loading models...")
+try:
+    diabetes_pipeline = joblib.load("models/diabetes_pipeline.pkl")
+    st.success("Diabetes model loaded successfully")
+except Exception as e:
+    st.error("Diabetes model loading failed")
+    st.text(str(e))
+    st.text(traceback.format_exc())
 
-diabetes_pipeline = joblib.load("models/diabetes_pipeline.pkl")
 diabetes_threshold = joblib.load("models/diabetes_threshold.pkl")
 
-heart_pipeline = joblib.load("models/heart_pipeline.pkl")
+try:
+    heart_pipeline = joblib.load("models/heart_pipeline.pkl")
+    st.success("Heart model loaded successfully")
+except Exception as e:
+    st.error("Heart model loading failed")
+    st.text(str(e))
+    st.text(traceback.format_exc())
+
 heart_threshold = joblib.load("models/heart_threshold.pkl")
 
 
